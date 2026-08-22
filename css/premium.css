@@ -465,10 +465,13 @@ body::before {
     transition: transform .55s cubic-bezier(.2,.8,.2,1), box-shadow .55s ease, border-color .55s ease;
 }
 
-.value-card:hover,
-.course-card:hover,
-.member-card:hover {
-    transform: translateY(-8px) scale(1.012);
+.value-card:hover {
+    transform: translateY(-14px) scale(1.015);
+    border-color: rgba(11, 94, 168, 0.16);
+    box-shadow: 
+        0 12px 24px -6px rgba(11, 94, 168, 0.08),
+        0 28px 56px -10px rgba(20, 46, 79, 0.12),
+        0 42px 72px -16px rgba(20, 46, 79, 0.06);
 }
 
 .project-divider {
@@ -635,7 +638,7 @@ body::before {
 .premium-recruiting-hero .recruit-purple { width:43%;height:62%;left:48%;top:22%;background:rgba(222,213,255,.38);animation-delay:-10s; }
 .premium-recruiting-hero .recruit-blue { width:45%;height:70%;right:-8%;top:13%;background:rgba(199,228,255,.48);animation-delay:-13s; }
 .premium-recruiting-hero .recruiting-hero-content { position:relative; z-index:3; width:100%; max-width:1280px; padding:80px 40px; text-align:center; }
-.premium-recruiting-hero .recruiting-eyebrow { margin:0 0 26px;color:rgba(30,30,38,.50);font-size:12px;font-weight:700;letter-spacing:.28em; }
+.premium-recruiting-hero .recruiting-eyebrow { margin: 0 0 26px;color: var(--syu);font-size: 12px;font-weight: 700; letter-spacing: 0.24em; }
 .premium-recruiting-hero .recruiting-title { margin:0;color:#090a0d;font-size:clamp(72px,8.2vw,136px);font-weight:700;line-height:.89;letter-spacing:-.075em;text-wrap:balance; }
 .premium-recruiting-hero .recruiting-title span { display:block; }
 .premium-recruiting-hero .recruiting-description { margin:38px auto 0;color:rgba(39,42,50,.60);font-size:17px;line-height:1.8; }
@@ -1472,4 +1475,45 @@ body::before {
     .alumni-career-symbol .career-arrow-head {
         animation: none !important;
     }
+}
+
+/* ==========================================
+   Home Hero: Interactive Mouse Glow Layer
+   ========================================== */
+.home-page .home-hero {
+    position: relative;
+}
+
+/* 마우스 커서를 따라 부드럽게 번지는 파스텔 멀티 글로우 레이어 */
+.home-page .home-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: radial-gradient(
+        580px circle at var(--mx, 50%) var(--my, 50%),
+        rgba(143, 201, 251, 0.22) 0%,
+        rgba(245, 218, 241, 0.18) 32%,
+        rgba(255, 241, 174, 0.14) 55%,
+        transparent 75%
+    );
+    filter: blur(35px);
+    opacity: 0.85;
+    transition: opacity 0.5s ease;
+}
+
+/* 배경 블롭들이 마우스 움직임에 반응해 은은하게 시차 이동(Parallax) */
+.home-page .home-gradient {
+    transform: translate(
+        calc(-50% + (var(--mx, 50%) - 50%) * 0.04),
+        calc(-50% + (var(--my, 50%) - 50%) * 0.04)
+    );
+    transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* 텍스트와 버튼이 인터랙티브 빛 위로 선명하게 올라오도록 z-index 보정 */
+.home-page .hero-center {
+    position: relative;
+    z-index: 3;
 }

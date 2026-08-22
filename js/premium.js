@@ -35,7 +35,7 @@
                 const ry = (x - 0.5) * 3.4;
                 card.style.setProperty('--cx', `${x * 100}%`);
                 card.style.setProperty('--cy', `${y * 100}%`);
-                card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-7px) scale(1.008)`;
+                card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-14px) scale(1.015)`;
             });
             card.addEventListener('pointerleave', () => {
                 card.style.transform = '';
