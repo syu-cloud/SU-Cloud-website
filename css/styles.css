@@ -64,6 +64,18 @@ a {
     display: block;
 }
 
+.brand-logo-img {
+    height: 110px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+.brand:hover .brand-logo-img {
+    transform: scale(1.05);
+}
+
 .brand-dot {
     position: absolute;
     top: 50%;
@@ -218,7 +230,7 @@ a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 1.05em; /* 텍스트가 지워져도 높이가 줄어들지 않도록 고정 */
+    min-height: 1.05em;
     white-space: nowrap;
 }
 
@@ -234,7 +246,6 @@ a {
     color: #9ca7b8;
 }
 
-/* 단일 타이핑 커서 */
 .typing-cursor {
     display: inline-block;
     margin-left: 6px;
@@ -246,12 +257,8 @@ a {
 }
 
 @keyframes blink {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
 
 .home-description {
@@ -519,19 +526,25 @@ a {
 .value-card {
     display: flex;
     flex-direction: column;
-    padding: 30px 24px;
+    padding: 32px 26px;
     border: 1px solid var(--line);
-    border-top: 3px solid var(--syu);
-    border-radius: 20px;
+    border-radius: 24px;
     background: linear-gradient(180deg, #ffffff, #fbfcfd);
-    box-shadow: 0 6px 20px rgba(25, 42, 70, 0.03);
+    box-shadow: 0 4px 18px rgba(25, 42, 70, 0.03);
     cursor: default;
-    transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.28s ease;
+    transition: 
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+        border-color 0.4s ease;
 }
 
 .value-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 18px 36px rgba(20, 46, 79, 0.1);
+    transform: translateY(-14px);
+    border-color: rgba(11, 94, 168, 0.16);
+    box-shadow: 
+        0 12px 24px -6px rgba(11, 94, 168, 0.08),
+        0 28px 56px -10px rgba(20, 46, 79, 0.12),
+        0 42px 72px -16px rgba(20, 46, 79, 0.06);
 }
 
 .value-card .card-num {
@@ -768,9 +781,22 @@ a {
 
 .member-card .portrait {
     width: 100%;
-    aspect-ratio: 1.12 / 1;
-    margin-bottom: 18px;
-    border-radius: 18px;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+.member-card .portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    margin: 0;
+    padding: 0;
 }
 
 .portrait-a { background: linear-gradient(145deg, #fff3db, #f8dfc8); }
@@ -785,6 +811,7 @@ a {
     display: flex;
     justify-content: space-between;
     gap: 10px;
+    margin-top: 18px;
 }
 
 .member-top h3 {
@@ -1033,7 +1060,7 @@ a {
 }
 
 /* ==========================================
-   FAQ & Footer
+   FAQ
    ========================================== */
 .faq-page-content details {
     padding: 22px 0;
@@ -1054,41 +1081,592 @@ a {
     line-height: 1.75;
 }
 
+/* ==========================================
+   Site Footer Style (120px 로고 최적화 4열 레이아웃)
+   ========================================== */
+
+/* 푸터와 상단의 간격을 margin-top으로 조정 */   
 .site-footer {
-    max-width: 1240px;
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto 30px;
-    padding: 28px 0;
+    width: 100%;
+    margin-top: 130px;
+    padding: 30px 0 40px;
     border-top: 1px solid var(--line);
-    color: #6f7988;
+    background: linear-gradient(180deg, #ffffff 0%, #f9fbfd 100%);
+    color: #556070;
+    font-size: 13px;
+}
+
+.footer-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 28px;
+}
+
+.footer-grid {
+    display: grid;
+    /* 120px 로고와 텍스트 길이에 최적화된 가변 비율 */
+    grid-template-columns: 1.3fr 1.45fr 1.25fr 1fr;
+    column-gap: 44px;
+    row-gap: 40px;
+    align-items: start;
+    padding-bottom: 56px;
+    border-bottom: 1px solid rgba(232, 237, 243, 0.85);
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 2, 3, 4열 헤딩 상단 기준선 일치 */
+.footer-col h3 {
+    margin: 0 0 18px;
+    color: #121d33;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    line-height: 1;
+}
+
+/* 1. Brand (120px 로고) */
+.footer-brand-col {
+    margin-top: -34px;
+}
+
+/*2. 로고와 설명 사이의 간격 조정 부분 */
+.footer-brand-col .brand {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: -20px;
+    line-height: 1;
+}
+
+.footer-brand-col .brand-logo-img {
+    width: 120px;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.footer-desc {
+    margin: 0 0 16px;
+    color: #717d90;
+    font-size: 12.5px;
+    line-height: 1.6;
+    word-break: keep-all;
+}
+
+.footer-dept-links {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.footer-dept-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--syu);
+    font-size: 12px;
+    font-weight: 600;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.footer-dept-links a:hover {
+    opacity: 0.75;
+    transform: translateX(2px);
+}
+
+/* 2. Location */
+.footer-address-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.location-building {
+    display: block;
+    color: #172030;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.address-line {
+    margin: 0;
+    color: #697586;
+    font-size: 12px;
+    line-height: 1.6;
+    word-break: keep-all;
+}
+
+.address-line span {
+    display: inline-block;
+    padding: 1px 5px;
+    margin-right: 4px;
+    border-radius: 4px;
+    background: #eef3f8;
+    color: #55657a;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+/* 3. Contact */
+.footer-info-item {
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.footer-info-item:last-child {
+    margin-bottom: 0;
+}
+
+.footer-info-item span {
+    display: block;
+    color: #8c97a8;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.footer-info-item a {
+    color: #2b3442;
+    font-weight: 500;
+    font-size: 13px;
+    transition: color 0.2s ease;
+    word-break: break-all;
+}
+
+.footer-info-item a:hover {
+    color: var(--syu);
+}
+
+/* 4. Navigation */
+.footer-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.footer-links a {
+    color: #616c7d;
+    font-size: 13px;
+    line-height: 1.3;
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: var(--syu);
+    transform: translateX(3px);
+}
+
+/* Bottom Copyright */
+.footer-bottom {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 32px;
+    color: #8c97a8;
     font-size: 12px;
 }
 
-.site-footer div {
+.footer-bottom p {
+    margin: 0;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 990px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 36px;
+        row-gap: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    .site-footer {
+        margin-top: 80px;
+        padding: 60px 0 32px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding-bottom: 36px;
+    }
+
+    .footer-bottom {
+        padding-top: 24px;
+    }
+}
+
+/* ==========================================
+   Projects Page
+   ========================================== */
+.projects-page .page-hero::before {
+    left: 58%;
+    background:
+        radial-gradient(ellipse 40% 48% at 28% 48%, rgba(211, 234, 255, 0.78) 0%, rgba(211, 234, 255, 0.40) 34%, rgba(211, 234, 255, 0.11) 54%, transparent 76%),
+        radial-gradient(ellipse 38% 50% at 53% 54%, rgba(244, 222, 242, 0.68) 0%, rgba(244, 222, 242, 0.34) 34%, rgba(244, 222, 242, 0.10) 54%, transparent 76%),
+        radial-gradient(ellipse 36% 45% at 77% 46%, rgba(255, 244, 190, 0.64) 0%, rgba(255, 244, 190, 0.31) 32%, rgba(255, 244, 190, 0.09) 50%, transparent 72%);
+}
+
+.projects-content {
+    padding-top: 35px;
+}
+
+.project-section-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.75fr);
+    align-items: end;
+    gap: 80px;
+    margin-bottom: 48px;
+}
+
+.project-section-head h2,
+.publication-intro h2 {
+    margin: 12px 0 0;
+    font-size: clamp(42px, 5vw, 68px);
+    line-height: 1.03;
+    letter-spacing: -0.05em;
+}
+
+.project-section-head > p,
+.publication-intro > p:last-child {
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.course-card {
+    min-height: 310px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    padding: 30px;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(249,251,253,0.98));
+    box-shadow: 0 10px 28px rgba(25, 42, 70, 0.035);
+    transition:
+        transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 0.28s ease,
+        border-color 0.28s ease;
 }
 
-.site-footer strong {
+.course-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(11, 94, 168, 0.20);
+    box-shadow: 0 20px 42px rgba(20, 46, 79, 0.09);
+}
+
+.course-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.course-number {
+    color: var(--syu);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.course-category {
+    padding: 6px 9px;
+    border-radius: 999px;
+    background: #f2f6fa;
+    color: #6e7989;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.course-card-body {
+    flex: 1;
+    padding-top: 42px;
+}
+
+.course-card h3 {
+    max-width: 430px;
+    margin: 0 0 16px;
+    color: #161c28;
+    font-size: clamp(25px, 2.4vw, 34px);
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+}
+
+.course-card p {
+    max-width: 500px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.course-link {
+    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 34px;
+    color: var(--syu);
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.course-link span {
+    font-size: 15px;
+    transition: transform 0.22s ease;
+}
+
+.course-card:hover .course-link span {
+    transform: translate(3px, -3px);
+}
+
+.project-divider {
+    height: 1px;
+    margin: 110px 0;
+    background: var(--line);
+}
+
+.lab-project-list {
+    display: grid;
+    gap: 18px;
+}
+
+.lab-project-card {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 0.65fr 1.5fr auto;
+    align-items: end;
+    gap: 46px;
+    padding: 46px;
+    border: 1px solid rgba(11, 94, 168, 0.08);
+    border-radius: 30px;
+    background:
+        radial-gradient(circle at 10% 10%, rgba(255, 242, 184, 0.72), transparent 34%),
+        radial-gradient(circle at 52% 16%, rgba(245, 223, 242, 0.68), transparent 36%),
+        radial-gradient(circle at 90% 28%, rgba(213, 235, 255, 0.78), transparent 40%),
+        #ffffff;
+    box-shadow: 0 16px 42px rgba(20, 46, 79, 0.055);
+}
+
+.lab-project-meta {
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.project-status {
+    width: fit-content;
+    padding: 7px 10px;
+    border-radius: 999px;
+    background: rgba(11, 94, 168, 0.10);
+    color: var(--syu);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+}
+
+.project-subtitle {
+    color: #718096;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.lab-project-copy h3 {
+    margin: 0 0 16px;
+    color: #121d33;
+    font-size: clamp(40px, 5vw, 68px);
+    line-height: 0.98;
+    letter-spacing: -0.06em;
+}
+
+.lab-project-copy > p {
+    max-width: 700px;
+    margin: 0;
+    color: #667387;
+    font-size: 14px;
+    line-height: 1.85;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 26px;
+}
+
+.project-tags span {
+    padding: 6px 9px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.72);
+    color: #5e6a7c;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.project-detail-link {
+    align-self: end;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--syu);
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.project-detail-link.is-disabled,
+.publication-link.is-disabled {
+    color: #9aa4b3;
+    cursor: default;
+}
+
+.data-error {
+    grid-column: 1 / -1;
+    padding: 28px 0;
+    color: #8d98a8;
+    font-size: 13px;
+}
+
+/* ==========================================
+   Publications Page
+   ========================================== */
+.publications-page .page-hero::before {
+    left: 61%;
+    background:
+        radial-gradient(ellipse 40% 50% at 27% 52%, rgba(244, 222, 242, 0.70) 0%, rgba(244, 222, 242, 0.36) 34%, rgba(244, 222, 242, 0.10) 54%, transparent 76%),
+        radial-gradient(ellipse 42% 52% at 55% 45%, rgba(211, 234, 255, 0.76) 0%, rgba(211, 234, 255, 0.39) 34%, rgba(211, 234, 255, 0.11) 55%, transparent 77%),
+        radial-gradient(ellipse 35% 44% at 79% 58%, rgba(255, 244, 190, 0.58) 0%, rgba(255, 244, 190, 0.29) 32%, rgba(255, 244, 190, 0.08) 50%, transparent 72%);
+}
+
+.publications-content {
+    padding-top: 35px;
+}
+
+.publication-intro {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    column-gap: 80px;
+    align-items: end;
+    margin-bottom: 54px;
+}
+
+.publication-intro .section-kicker {
+    grid-column: 1 / -1;
+}
+
+.publication-intro h2 {
+    grid-column: 1;
+}
+
+.publication-intro > p:last-child {
+    grid-column: 2;
+    align-self: end;
+}
+
+.publication-list {
+    border-top: 1px solid var(--line);
+}
+
+.publication-item {
+    display: grid;
+    grid-template-columns: 80px minmax(0, 1fr) 48px;
+    gap: 28px;
+    align-items: center;
+    padding: 34px 0;
+    border-bottom: 1px solid var(--line);
+    transition: padding-left 0.24s ease, background 0.24s ease;
+}
+
+.publication-item:hover {
+    padding-left: 10px;
+    background: linear-gradient(90deg, rgba(213, 235, 255, 0.16), transparent 55%);
+}
+
+.publication-index {
+    color: var(--syu);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.publication-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-bottom: 10px;
+    color: #8d97a6;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.publication-main h3 {
+    max-width: 1000px;
+    margin: 0;
     color: #192438;
+    font-size: clamp(20px, 2vw, 27px);
+    line-height: 1.42;
+    letter-spacing: -0.025em;
 }
 
-.reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+.publication-main > p {
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
 }
 
-.reveal.on {
-    opacity: 1;
-    transform: none;
+.publication-link {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    color: var(--syu);
+    font-size: 17px;
+    transition: transform 0.22s ease, background 0.22s ease;
+}
+
+.publication-item:hover .publication-link:not(.is-disabled) {
+    transform: translate(3px, -3px);
+    background: #edf5fc;
 }
 
 /* ==========================================
    Responsive Breakpoints
    ========================================== */
+@media (max-width: 1120px) {
+    .nav {
+        gap: 12px;
+    }
+
+    .nav-en {
+        font-size: 13px;
+    }
+
+    .nav-ko {
+        font-size: 9px;
+    }
+}
+
 @media (max-width: 1000px) {
     .member-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1105,6 +1683,13 @@ a {
 
     .value-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 990px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 44px 32px;
     }
 }
 
@@ -1125,6 +1710,28 @@ a {
 
     .recruiting-hero-content {
         padding: 70px 24px;
+    }
+
+    .project-section-head,
+    .publication-intro {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .publication-intro .section-kicker,
+    .publication-intro h2,
+    .publication-intro > p:last-child {
+        grid-column: 1;
+    }
+
+    .lab-project-card {
+        grid-template-columns: 1fr;
+        align-items: start;
+        gap: 30px;
+    }
+
+    .project-detail-link {
+        align-self: start;
     }
 }
 
@@ -1221,6 +1828,51 @@ a {
     .recruit-panel {
         padding: 38px;
     }
+
+    .course-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .course-card {
+        min-height: auto;
+    }
+
+    .course-card-body {
+        padding-top: 30px;
+    }
+
+    .project-divider {
+        margin: 78px 0;
+    }
+
+    .lab-project-card {
+        padding: 34px 28px;
+        border-radius: 24px;
+    }
+
+    .publication-item {
+        grid-template-columns: 48px 1fr 34px;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .site-footer {
+        margin-top: 80px;
+        padding: 60px 0 32px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        padding-bottom: 40px;
+    }
+
+    .footer-bottom {
+        padding-top: 24px;
+        justify-content: center;
+        text-align: center;
+    }
 }
 
 @media (max-width: 560px) {
@@ -1268,5 +1920,32 @@ a {
 
     .recruiting-blob {
         filter: blur(65px);
+    }
+
+    .course-card {
+        padding: 24px;
+        border-radius: 20px;
+    }
+
+    .course-card h3 {
+        font-size: 26px;
+    }
+
+    .lab-project-copy h3 {
+        font-size: 48px;
+    }
+
+    .publication-item {
+        grid-template-columns: 1fr 32px;
+        gap: 12px;
+        padding: 28px 0;
+    }
+
+    .publication-index {
+        grid-column: 1 / -1;
+    }
+
+    .publication-main h3 {
+        font-size: 19px;
     }
 }
