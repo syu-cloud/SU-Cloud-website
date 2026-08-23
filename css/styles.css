@@ -516,6 +516,119 @@ a {
 /* ==========================================
    About Page - Research Value Cards (4 Cards)
    ========================================== */
+/* About Page Hero Description */
+.page-hero-desc {
+    max-width: 780px;
+    margin-top: 10px;
+}
+
+.page-hero-desc p {
+    margin: 0 0 16px;
+    color: var(--muted);
+    font-size: 15.5px;
+    line-height: 1.85;
+    word-break: keep-all;
+}
+
+.page-hero-desc p strong {
+    color: #121d33;
+    font-weight: 700;
+}
+
+.page-hero-desc .hero-welcome {
+    margin-top: 22px;
+    color: var(--syu);
+    font-weight: 600;
+    font-size: 15px;
+}
+
+/* ==========================================
+   About Page Hero - 2 Column Split Layout
+   ========================================== */
+.about-hero {
+    max-width: 1380px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 80px 7vw 60px;
+    display: grid;
+    /* 2단의 .section-grid와 동일한 1:1 분할 및 80px 간격 적용 */
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    min-height: auto;
+}
+
+/* ★ 1단 등장 속도 제어 (기본 0.7초 -> 1.4초로 완화) */
+.about-hero.reveal {
+    transition: 
+        opacity 5.0s cubic-bezier(0.16, 1, 0.3, 1), 
+        transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 좌측 타이틀 */
+.about-hero .hero-title-col h1 {
+    margin: 16px 0 0;
+    font-size: clamp(48px, 5.8vw, 76px);
+    line-height: 1.04;
+    letter-spacing: -0.06em;
+    word-break: keep-all;
+}
+
+/* 우측 설명글 */
+.about-hero .hero-desc-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 30px; /* 좌측 h1 첫 글자 라인과 시각적 높이 일치 */
+}
+
+.about-hero .hero-desc-col p {
+    margin: 0;
+    color: #556070;
+    font-size: 15px;
+    line-height: 1.85;
+    word-break: keep-all;
+}
+
+.about-hero .hero-desc-col p strong {
+    color: #121d33;
+    font-weight: 700;
+}
+
+.about-hero .hero-desc-col .hero-welcome {
+    margin-top: 6px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--line);
+    color: var(--syu);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.7;
+}
+
+.about-hero ~ .detail-section {
+    padding-bottom: 0px; /* 30px ~ 60px 사이로 직접 조절 */
+}
+
+/* 소개 페이지 2단 및 세부 섹션 내 강조 텍스트 컬러 일치 */
+.detail-section p strong,
+.value-card p strong {
+    color: #121d33;
+    font-weight: 700;
+}
+
+/* 태블릿 및 모바일 반응형 */
+@media (max-width: 900px) {
+    .about-hero {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        padding-top: 60px;
+    }
+
+    .about-hero .hero-desc-col {
+        padding-top: 0;
+    }
+}
+
 .value-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -860,6 +973,28 @@ a {
     font-size: 11px;
 }
 
+/* ★ 진로 배너(본문)와 하단 푸터 사이 간격 단독 제어 */
+.members-content {
+    padding-bottom: 30px;
+}
+
+/* 1. members 본문 및 진로 배너 자체의 하단 여백 제거 */
+.members-content {
+    padding-bottom: 0 !important;
+}
+
+.career-banner,
+.career-section {
+    margin-bottom: 0 !important;
+}
+
+/* 2. members 페이지에서만 푸터의 상단 여백을 30px로 축소 */
+.members-page-main ~ .site-footer,
+main.members-page-main + .site-footer {
+    margin-top: 30px !important;
+}
+
+
 /* ==========================================
    Recruiting Section
    ========================================== */
@@ -1051,6 +1186,23 @@ a {
     transform: translate(3px, -3px);
 }
 
+/* ==========================================
+   Recruiting 페이지 - 지원 배너와 푸터 간격 (30px 고정)
+   ========================================== */
+
+/* 1. Recruiting 최하단 지원 카드 자체의 하단 바깥 여백 제거 */
+.recruit-apply-clean {
+    margin-bottom: 0 !important;
+}
+
+/* 2. Recruiting 페이지 푸터 상단 여백 30px 고정 */
+.premium-recruiting-main ~ .site-footer,
+main.premium-recruiting-main + .site-footer,
+.recruiting-main ~ .site-footer,
+main.recruiting-main + .site-footer {
+    margin-top: 30px !important;
+}
+
 @keyframes recruitingMorph {
     0% { transform: translate(0, 0) scale(1); }
     25% { transform: translate(25px, -15px) scale(1.08); }
@@ -1079,6 +1231,21 @@ a {
 .faq-page-content p {
     color: var(--muted);
     line-height: 1.75;
+}
+
+/* ==========================================
+   FAQ 페이지 - CTA 배너와 푸터 간격 (30px 고정)
+   ========================================== */
+
+/* 1. FAQ CTA 배너 자체의 하단 바깥 여백 제거 */
+.faq-cta {
+    margin-bottom: 0 !important;
+}
+
+/* 2. FAQ 페이지 푸터 상단 여백 30px 고정 */
+.premium-fqp-main ~ .site-footer,
+main.premium-fqp-main + .site-footer {
+    margin-top: 30px !important;
 }
 
 /* ==========================================
@@ -1546,6 +1713,58 @@ a {
 }
 
 /* ==========================================
+   Projects 페이지 - 푸터 간격 30px 고정
+   ========================================== */
+.projects-content {
+    padding-bottom: 0 !important;
+}
+
+.lab-project-list {
+    margin-bottom: 0 !important;
+}
+
+main:has(.projects-content) ~ .site-footer,
+main:has(.projects-content) + .site-footer,
+.projects-page-main ~ .site-footer,
+main.projects-page-main + .site-footer {
+    margin-top: 130px !important;
+}
+
+/* ==========================================
+   Projects Page - 1단(Hero)과 2단 좌측 시작선 전 구간 반응형 일치
+   ========================================== */
+/* 1. 기본 데스크톱 (전체화면) */
+main:has(.projects-content) .page-hero,
+.projects-page-main .page-hero {
+    max-width: 1380px;
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 7vw !important;
+    padding-right: 7vw !important;
+    box-sizing: border-box;
+}
+
+/* 2. 태블릿 구간 (900px 이하 축소 시) */
+@media (max-width: 900px) {
+    main:has(.projects-content) .page-hero,
+    .projects-page-main .page-hero,
+    .projects-content {
+        padding-left: 6vw !important;
+        padding-right: 6vw !important;
+    }
+}
+
+/* 3. 모바일 구간 (600px 이하 축소 시) */
+@media (max-width: 600px) {
+    main:has(.projects-content) .page-hero,
+    .projects-page-main .page-hero,
+    .projects-content {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+}
+
+/* ==========================================
    Publications Page
    ========================================== */
 .publications-page .page-hero::before {
@@ -1648,6 +1867,167 @@ a {
 .publication-item:hover .publication-link:not(.is-disabled) {
     transform: translate(3px, -3px);
     background: #edf5fc;
+}
+
+/* ==========================================
+   Publications Page
+   ========================================== */
+.publications-page .page-hero::before {
+    left: 61%;
+    background:
+        radial-gradient(ellipse 40% 50% at 27% 52%, rgba(244, 222, 242, 0.70) 0%, rgba(244, 222, 242, 0.36) 34%, rgba(244, 222, 242, 0.10) 54%, transparent 76%),
+        radial-gradient(ellipse 42% 52% at 55% 45%, rgba(211, 234, 255, 0.76) 0%, rgba(211, 234, 255, 0.39) 34%, rgba(211, 234, 255, 0.11) 55%, transparent 77%),
+        radial-gradient(ellipse 35% 44% at 79% 58%, rgba(255, 244, 190, 0.58) 0%, rgba(255, 244, 190, 0.29) 32%, rgba(255, 244, 190, 0.08) 50%, transparent 72%);
+}
+
+.publications-content {
+    padding-top: 35px;
+}
+
+.publication-intro {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    column-gap: 80px;
+    align-items: end;
+    margin-bottom: 54px;
+}
+
+.publication-intro .section-kicker {
+    grid-column: 1 / -1;
+}
+
+.publication-intro h2 {
+    grid-column: 1;
+}
+
+.publication-intro > p:last-child {
+    grid-column: 2;
+    align-self: end;
+}
+
+.publication-list {
+    border-top: 1px solid var(--line);
+}
+
+.publication-item {
+    display: grid;
+    grid-template-columns: 80px minmax(0, 1fr) 48px;
+    gap: 28px;
+    align-items: center;
+    padding: 34px 0;
+    border-bottom: 1px solid var(--line);
+    transition: padding-left 0.24s ease, background 0.24s ease;
+}
+
+.publication-item:hover {
+    padding-left: 10px;
+    background: linear-gradient(90deg, rgba(213, 235, 255, 0.16), transparent 55%);
+}
+
+.publication-index {
+    color: var(--syu);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.publication-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-bottom: 10px;
+    color: #8d97a6;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.publication-main h3 {
+    max-width: 1000px;
+    margin: 0;
+    color: #192438;
+    font-size: clamp(20px, 2vw, 27px);
+    line-height: 1.42;
+    letter-spacing: -0.025em;
+}
+
+.publication-main > p {
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.publication-link {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    color: var(--syu);
+    font-size: 17px;
+    transition: transform 0.22s ease, background 0.22s ease;
+}
+
+.publication-item:hover .publication-link:not(.is-disabled) {
+    transform: translate(3px, -3px);
+    background: #edf5fc;
+}
+
+/* ==========================================
+   Publications 페이지 - 푸터 상단 여백 (120px 유지)
+   ========================================== */
+.publications-content {
+    padding-bottom: 0 !important;
+}
+
+.publication-list {
+    margin-bottom: 0 !important;
+}
+
+main:has(.publications-content) ~ .site-footer,
+main:has(.publications-content) + .site-footer,
+.publications-page-main ~ .site-footer,
+main.publications-page-main + .site-footer,
+.publications-page ~ .site-footer {
+    margin-top: 120px !important;
+}
+
+/* ==========================================
+   Publications Page - 1단(Hero)과 2단 좌측 시작선 전 구간 반응형 일치
+   ========================================== */
+/* 1. 기본 데스크톱 (전체화면) */
+main:has(.publications-content) .page-hero,
+.publications-page-main .page-hero,
+.publications-page .page-hero {
+    max-width: 1380px;
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 7vw !important;
+    padding-right: 7vw !important;
+    box-sizing: border-box;
+}
+
+/* 2. 태블릿 구간 (900px 이하 축소 시) */
+@media (max-width: 900px) {
+    main:has(.publications-content) .page-hero,
+    .publications-page-main .page-hero,
+    .publications-page .page-hero,
+    .publications-content {
+        padding-left: 6vw !important;
+        padding-right: 6vw !important;
+    }
+}
+
+/* 3. 모바일 구간 (600px 이하 축소 시) */
+@media (max-width: 600px) {
+    main:has(.publications-content) .page-hero,
+    .publications-page-main .page-hero,
+    .publications-page .page-hero,
+    .publications-content {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
 }
 
 /* ==========================================
