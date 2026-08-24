@@ -20,9 +20,6 @@ async function loadProjects() {
                     <h3>${course.title}</h3>
                     <p>${course.description}</p>
                 </div>
-                <a class="course-link" href="${course.url}" target="_blank" rel="noopener noreferrer">
-                    Explore course <span aria-hidden="true">↗</span>
-                </a>
             </article>
         `).join("");
 
@@ -40,8 +37,8 @@ async function loadProjects() {
                     </div>
                 </div>
                 ${project.url
-                    ? `<a class="project-detail-link" href="${project.url}" target="_blank" rel="noopener noreferrer">View project <span>↗</span></a>`
-                    : `<span class="project-detail-link is-disabled">Details coming soon</span>`}
+                    ? `<a class="project-detail-link" href="${project.url}" target="_blank" rel="noopener noreferrer">프로젝트 보기 <span>↗</span></a>`
+                    : `<span class="project-detail-link is-disabled">상세 내용 준비 중</span>`}
             </article>
         `).join("");
 
