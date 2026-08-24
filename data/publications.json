@@ -1,23 +1,23 @@
 [
   {
-    "title": "End-to-End Latency Optimization and Resource Trade-off Analysis in Large-Scale Real-Time Data Pipelines",
-    "authors": "Jiman Cha, Choong-hee Cho",
-    "venue": "한국컴퓨터정보학회 논문지 (JKSCI), Vol. 31, No. 5",
-    "year": "2026",
-    "url": ""
-  },
-  {
     "title": "HAL: An Encoding Method for Efficient Log Data Pipelines",
     "authors": "Min-gi Lee, Choong-hee Cho",
     "venue": "한국컴퓨터정보학회 논문지 (JKSCI), Vol. 31, No. 6",
     "year": "2026",
-    "url": ""
+    "url": "https://journal.kci.go.kr/jksci/archive/articleList?volIsseId=VOL000197477"
   },
   {
-    "title": "클라우드 자원 수명주기 관리를 위한 통합 프레임워크의 설계 및 구현",
-    "authors": "박준우, 김재현, 안현, 이성현, 이예승, 조충희",
-    "venue": "게재지·권호 확인 중",
-    "year": "",
-    "url": ""
+    "title": "End-to-End Latency Optimization and Resource Trade-off Analysis in Large-Scale Real-Time Data Pipelines",
+    "authors": "Jiman Cha, Choong-hee Cho",
+    "venue": "한국컴퓨터정보학회 논문지 (JKSCI), Vol. 31, No. 5",
+    "year": "2026",
+    "url": "https://doi.org/10.9708/jksci.2026.31.05.011"
+  },
+  {
+    "title": "Design and Implementation of an Integrated Framework for Lifecycle Management of Cloud Resources",
+    "authors": "Jun-woo Park, Jae-hyun Kim, Hyun Ahn, Sung-hyun Lee, Ye-seung Lee, Choong-hee Cho",
+    "venue": "정보처리학회 논문지 (KTSDE), Vol. 14, No. 12",
+    "year": "2025",
+    "url": "https://doi.org/10.3745/TKIPS.2025.14.12.987"
   }
 ]
