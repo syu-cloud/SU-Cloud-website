@@ -1607,7 +1607,8 @@ main.recruiting-main + .site-footer {
 }
 
 .faq-page-content p {
-    color: var(--muted);
+    color: #111827 !important;
+    background: transparent !important;
     line-height: 1.75;
 }
 
@@ -2198,4 +2199,18 @@ main.premium-fqp-main + .site-footer {
     .publication-main h3 {
         font-size: 19px;
     }
+}
+
+.faq-page .page-hero h1 {
+    font-size: 60px;
+}
+
+.faq-page-content p,
+.faq-page-content p span,
+.faq-page-content p strong,
+.faq-page-content p mark {
+    color: #111827 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }
