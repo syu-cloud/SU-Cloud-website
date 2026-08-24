@@ -1085,6 +1085,10 @@ main.members-page-main + .site-footer {
     font-weight: 650;
 }
 
+.course-link-secondary {
+    margin-top: 12px;
+}
+
 .course-link span {
     font-size: 15px;
     transition: transform 0.22s ease;
@@ -1247,7 +1251,7 @@ main.projects-page-main + .site-footer {
     padding-top: 35px;
 }
 
-.publication-intro {
+.section-intro-grid {
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
     column-gap: 80px;
@@ -1255,11 +1259,11 @@ main.projects-page-main + .site-footer {
     margin-bottom: 54px;
 }
 
-.publication-intro .section-kicker {
+.section-intro-grid .section-kicker {
     grid-column: 1 / -1;
 }
 
-.publication-intro h2 {
+.section-intro-grid h2 {
     grid-column: 1;
     margin: 12px 0 0;
     font-size: clamp(36px, 4vw, 56px);
@@ -1267,7 +1271,7 @@ main.projects-page-main + .site-footer {
     letter-spacing: -0.05em;
 }
 
-.publication-intro > p:last-child {
+.section-intro-grid > p:last-child {
     grid-column: 2;
     align-self: end;
     margin: 0;
@@ -1921,14 +1925,14 @@ main.premium-fqp-main + .site-footer {
     }
 
     .project-section-head,
-    .publication-intro {
+    .section-intro-grid {
         grid-template-columns: 1fr;
         gap: 24px;
     }
 
-    .publication-intro .section-kicker,
-    .publication-intro h2,
-    .publication-intro > p:last-child {
+    .section-intro-grid .section-kicker,
+    .section-intro-grid h2,
+    .section-intro-grid > p:last-child {
         grid-column: 1;
     }
 
