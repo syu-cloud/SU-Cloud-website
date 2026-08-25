@@ -916,6 +916,8 @@ a {
     color: var(--syu);
     font-size: 11px;
     font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .member-project {
@@ -947,19 +949,206 @@ a {
     line-height: 1.5;
 }
 
-/* Members 페이지 최하단 및 푸터 간격 (30px 고정) */
-.members-content {
-    padding-bottom: 0 !important;
-}
+/* ==========================================================================
+   [모바일 전 기종 완벽 고정] 360px~430px 전 구간 비율 유지 푸터
+   ========================================================================== */
+@media (max-width: 600px) {
+    .site-footer {
+        margin-top: 50px !important;
+        padding: clamp(24px, 6vw, 34px) 0 clamp(20px, 5vw, 28px) !important;
+    }
 
-.career-banner,
-.career-section {
-    margin-bottom: 0 !important;
-}
+    .footer-inner {
+        /* 화면 폭에 맞춰 좌우 여백 자동 비례 조절 (12px ~ 20px) */
+        padding: 0 clamp(12px, 3.5vw, 20px) !important;
+    }
 
-.members-page-main ~ .site-footer,
-main.members-page-main + .site-footer {
-    margin-top: 30px !important;
+    /* 1. 상단 Nav(1행) + 좌측 Brand / 우측 Loc & Contact(2, 3행) 구조 */
+    .footer-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        grid-template-areas:
+            "nav nav"
+            "brand loc"
+            "brand contact" !important;
+        column-gap: clamp(10px, 3vw, 18px) !important;
+        row-gap: clamp(14px, 4vw, 20px) !important;
+        padding-bottom: clamp(18px, 4.5vw, 24px) !important;
+    }
+
+    /* ----------------------------------------------------
+       [1행 전체 너비] 상단 Navigation 바 (무조건 1줄 고정)
+       ---------------------------------------------------- */
+    .footer-col:nth-child(4) {
+        grid-area: nav !important;
+        width: 100% !important;
+        padding-bottom: clamp(12px, 3vw, 16px) !important;
+        border-bottom: 1px solid var(--line) !important;
+    }
+
+    .footer-col:nth-child(4) h3 {
+        display: none !important;
+    }
+
+    .footer-links {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important; /* 줄바꿈 절대 방지 */
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        list-style: none !important;
+        width: 100% !important;
+    }
+
+    .footer-links li {
+        display: inline-flex !important;
+    }
+
+    /* 화면 폭에 따라 10.5px ~ 13px로 자동 비례 축소 */
+    .footer-links a {
+        font-size: clamp(10.5px, 2.7vw, 13px) !important;
+        font-weight: 600 !important;
+        color: #2b3442 !important;
+        white-space: nowrap !important;
+        letter-spacing: -0.02em !important;
+    }
+
+    /* ----------------------------------------------------
+       [2·3행 좌측] Logo & 브랜드 설명 (중앙 정렬)
+       ---------------------------------------------------- */
+    .footer-brand-col,
+    .footer-col:nth-child(1) {
+        grid-area: brand !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        margin-top: -15px !important;
+        transform: translateY(-2px) !important;
+    }
+
+    .footer-brand-col .brand {
+        display: flex !important;
+        justify-content: center !important;
+        margin: 0 auto clamp(4px, 1.5vw, 8px) !important;
+    }
+
+    /* 화면 폭에 따라 로고 크기 비례 축소 (78px ~ 95px) */
+    .footer-brand-col .brand-logo-img {
+        width: clamp(78px, 20vw, 95px) !important;
+        height: auto !important;
+    }
+
+    .footer-desc {
+        font-size: clamp(9.5px, 2.5vw, 11.5px) !important;
+        line-height: 1.45 !important;
+        margin-bottom: clamp(6px, 1.8vw, 9px) !important;
+        text-align: center !important;
+        word-break: keep-all !important;
+    }
+
+    .footer-dept-links {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 3px !important;
+    }
+
+    .footer-dept-links a {
+        font-size: clamp(9.5px, 2.5vw, 11px) !important;
+        justify-content: center !important;
+        white-space: nowrap !important;
+    }
+
+    /* ----------------------------------------------------
+       [2행 우측] LOCATION (위치 정보)
+       ---------------------------------------------------- */
+    .footer-col:nth-child(2) {
+        grid-area: loc !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .location-building {
+        font-size: clamp(10.5px, 2.7vw, 12px) !important;
+        font-weight: 700 !important;
+        margin-bottom: 2px !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+    }
+
+    .address-line {
+        font-size: clamp(9.5px, 2.4vw, 11px) !important;
+        line-height: 1.4 !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+        letter-spacing: -0.03em !important; /* 긴 주소 압축 */
+    }
+
+    /* 도로명 배지 및 지번 주소 숨김 */
+    .address-line span,
+    .footer-address-block .address-line:last-of-type {
+        display: none !important;
+    }
+
+    /* ----------------------------------------------------
+       [3행 우측] CONTACT (연락처 정보 한 줄 정렬)
+       ---------------------------------------------------- */
+    .footer-col:nth-child(3) {
+        grid-area: contact !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: clamp(4px, 1.2vw, 6px) !important;
+        padding-top: 2px !important;
+        border-top: none !important;
+    }
+
+    .footer-info-item {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 5px !important;
+        margin-bottom: 0 !important;
+        white-space: nowrap !important;
+    }
+
+    .footer-info-item span {
+        font-size: clamp(9.5px, 2.4vw, 11px) !important;
+        color: #717d90 !important;
+        margin-bottom: 0 !important;
+        white-space: nowrap !important;
+    }
+
+    .footer-info-item a {
+        font-size: clamp(9.5px, 2.4vw, 11px) !important;
+        color: #2b3442 !important;
+        letter-spacing: -0.025em !important; /* 긴 이메일 주소 압축 */
+        white-space: nowrap !important;
+    }
+
+    /* ----------------------------------------------------
+       공통 헤딩 & 카피라이트
+       ---------------------------------------------------- */
+    .footer-col h3 {
+        font-size: clamp(9px, 2.3vw, 10.5px) !important;
+        margin-bottom: clamp(5px, 1.5vw, 8px) !important;
+        text-align: center !important;
+        width: 100% !important;
+        letter-spacing: 0.12em !important;
+    }
+
+    .footer-bottom {
+        padding-top: clamp(14px, 3.5vw, 18px) !important;
+        justify-content: center !important;
+        text-align: center !important;
+        font-size: clamp(9.5px, 2.4vw, 11px) !important;
+    }
 }
 
 
